@@ -20,7 +20,7 @@ Login ID:
 
 <div id='tweetresult'></div>
 
-<script type="text/javascript" src="http://vagrant-codeigniter.local/js/jquery-1.9.1.min.js"></script>
+<script type="text/javascript" src="<?php echo base_url('js/jquery-1.9.1.min.js');?>"></script>
 <script type="text/javascript">
 
 var userID = "<?php echo $_SESSION['ID'];?>";
@@ -29,7 +29,7 @@ var browserHeight = $(window).height();
 
 $("#tweetbutton").click(function(){
 	var str = $("#textarea").val();
-	$.post("http://vagrant-codeigniter.local/js/tweetsave.php",{text:str,ID:userID},function(json){
+	$.post("<?php echo base_url('js/tweetsave.php');?>",{text:str,ID:userID},function(json){
 		$("#test").append(" posted! ");
 		$("#tweetresult").prepend("</br>*" + str + "</br>----------------------------------------------------</br>");
 		$("#textarea").val("");
@@ -42,7 +42,7 @@ $(window).scroll(function(){
 	var tweetresultHeight = $("#tweetresult").height();
 	var tweetresultOffset = $("#tweetresult").offset().top;
 	if((tweetresultOffset + tweetresultHeight) < (scrollTop + browserHeight)){
-		$.getJSON("http://vagrant-codeigniter.local/js/tweets.json", function(data){
+		$.getJSON("<?php echo base_url('js/tweets.json');?>", function(data){
 			for(var i in data){
 				if(data[i].ID == userID){
 					for(var j = 0;j < 5;j++){
@@ -60,7 +60,7 @@ $(window).scroll(function(){
 });
 
 $(document).ready(function () {
-	$.getJSON("http://vagrant-codeigniter.local/js/tweets.json", function(data){
+	$.getJSON("<?php echo base_url('js/tweets.json');?>", function(data){
 		for(var i in data){
 			if(data[i].ID == userID){
 				lastTweetNum = data[i].maxNum;
